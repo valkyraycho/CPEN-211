@@ -1,0 +1,58 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/18.1/train
+vq2
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1665618672
+!i10b 1
+!s100 a>XRNVAdDJPj_2^Ta9O130
+ILXnRe_aP_`iiYUI3[B@Ff2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 _2019q2_sv_unit
+S1
+Z3 dC:/intelFPGA_lite/18.1/midterm practice/2019q2
+w1665617882
+8C:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2.sv
+FC:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2.sv
+L0 1
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1665618672.000000
+!s107 C:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2.sv|
+!i113 1
+Z6 o-work work -sv
+Z7 tCvgOpt 0
+vq2_tb
+R0
+R1
+!i10b 1
+!s100 =SXL=Rz8Mb@>NAHQkBn`<1
+ILHUUA6bcE9eeNAJ_[G5Lj2
+R2
+!s105 _2019q2_tb_sv_unit
+S1
+R3
+w1665618130
+8C:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2_tb.sv
+FC:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2_tb.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/18.1/midterm practice/2019q2/2019q2_tb.sv|
+!i113 1
+R6
+R7

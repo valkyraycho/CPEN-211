@@ -1,0 +1,5 @@
+Info (10281): Verilog HDL Declaration information at controller.sv(10): object "Wait" differs only in case from object "WAIT" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab6-files/lab6-files/controller.sv Line: 10
+Info (10281): Verilog HDL Declaration information at alu.sv(1): object "ALU_out" differs only in case from object "alu_out" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab6-files/lab6-files/alu.sv Line: 1
+Info (10281): Verilog HDL Declaration information at alu.sv(1): object "Z" differs only in case from object "z" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab6-files/lab6-files/alu.sv Line: 1
+Info (10281): Verilog HDL Declaration information at alu.sv(1): object "N" differs only in case from object "n" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab6-files/lab6-files/alu.sv Line: 1
+Info (10281): Verilog HDL Declaration information at alu.sv(1): object "V" differs only in case from object "v" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab6-files/lab6-files/alu.sv Line: 1

@@ -1,0 +1,16 @@
+C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/ramtest.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/ramtest.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramtest
+-- Compiling module tb_ramtest
+
+Top level modules:
+	tb_ramtest
+
+} {} {}} C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/ram.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/ram.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ram
+
+Top level modules:
+	ram
+
+} {} {}}

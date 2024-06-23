@@ -1,0 +1,6 @@
+Info (10281): Verilog HDL Declaration information at task2.sv(51): object "pc_load" differs only in case from object "PC_LOAD" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/task2.sv Line: 51
+Info (10281): Verilog HDL Declaration information at task2.sv(51): object "addr_load" differs only in case from object "ADDR_LOAD" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/task2.sv Line: 51
+Info (10281): Verilog HDL Declaration information at task2.sv(169): object "ALU_out" differs only in case from object "alu_out" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/task2.sv Line: 169
+Info (10281): Verilog HDL Declaration information at task2.sv(169): object "Z" differs only in case from object "z" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/task2.sv Line: 169
+Info (10281): Verilog HDL Declaration information at task2.sv(169): object "N" differs only in case from object "n" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/task2.sv Line: 169
+Info (10281): Verilog HDL Declaration information at task2.sv(169): object "V" differs only in case from object "v" in the same scope File: C:/intelFPGA_lite/18.1/CPEN211/lab7-files/lab7-files/task2.sv Line: 169
