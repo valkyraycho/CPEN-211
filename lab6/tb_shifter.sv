@@ -17,6 +17,10 @@ module tb_shifter (
     );
 
     initial begin
+        numpass = 1'b0;
+        numfail = 1'b0;
+        error = 1'b0;
+
         shift_op = 2'b00;
         shift_in = 16'b1111000011001111;
         #5;
