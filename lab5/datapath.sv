@@ -1,20 +1,20 @@
 module datapath (
-    input         clk,
-    input  [15:0] datapath_in,
-    input         wb_sel,
-    input  [ 2:0] w_addr,
-    input         w_en,
-    input  [ 2:0] r_addr,
-    input         en_A,
-    input         en_B,
-    input  [ 1:0] shift_op,
-    input         sel_A,
-    input         sel_B,
-    input  [ 1:0] ALU_op,
-    input         en_C,
-    input         en_status,
-    output [15:0] datapath_out,
-    output        Z_out
+    input               clk,
+    input        [15:0] datapath_in,
+    input               wb_sel,
+    input        [ 2:0] w_addr,
+    input               w_en,
+    input        [ 2:0] r_addr,
+    input               en_A,
+    input               en_B,
+    input        [ 1:0] shift_op,
+    input               sel_A,
+    input               sel_B,
+    input        [ 1:0] ALU_op,
+    input               en_C,
+    input               en_status,
+    output logic [15:0] datapath_out,
+    output logic        Z_out
 );
     wire [15:0] w_data;
     assign w_data = (wb_sel) ? datapath_in : datapath_out;
@@ -54,10 +54,6 @@ module datapath (
         .Z
     );
 
-    reg out_z;
-    reg [15:0] out_datapath;
-    assign Z_out        = out_z;
-    assign datapath_out = out_datapath;
-    always_ff @(posedge clk) if (en_C) out_datapath <= ALU_out;
-    always_ff @(posedge clk) if (en_status) out_z <= Z;
+    always_ff @(posedge clk) if (en_C) datapath_out <= ALU_out;
+    always_ff @(posedge clk) if (en_status) Z_out <= Z;
 endmodule : datapath

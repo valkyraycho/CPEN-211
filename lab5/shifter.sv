@@ -1,7 +1,7 @@
 module shifter (
-    input      [15:0] shift_in,
-    input      [ 1:0] shift_op,
-    output reg [15:0] shift_out
+    input        [15:0] shift_in,
+    input        [ 1:0] shift_op,
+    output logic [15:0] shift_out
 );
     always_comb begin
         shift_out = 16'b0;
