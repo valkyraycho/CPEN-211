@@ -56,11 +56,11 @@ module tb_cpu (
     );
     initial begin
         {clk, load} = 3'b0;
-        rst_n = 1'b1;
-        instr = 16'b0;
-        numfail = 1'b0;
-        numpass = 1'b0;
-        error = 1'b0;
+        rst_n       = 1'b1;
+        instr       = 16'b0;
+        numfail     = 1'b0;
+        numpass     = 1'b0;
+        error       = 1'b0;
         #5;
 
         reset;
