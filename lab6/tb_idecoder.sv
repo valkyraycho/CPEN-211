@@ -1,9 +1,11 @@
-module tb_idecoder(output err);
-    reg [15:0] ir;
-    reg [1:0] reg_sel;
-    wire [2:0] opcode;
+module tb_idecoder (
+    output err
+);
+    reg  [15:0] ir;
+    reg  [ 1:0] reg_sel;
+    wire [ 2:0] opcode;
     wire [1:0] ALU_op, shift_op;
-		wire [15:0] sximm5, sximm8;
+    wire [15:0] sximm5, sximm8;
     wire [2:0] r_addr, w_addr;
 
     integer numpass;
@@ -11,13 +13,22 @@ module tb_idecoder(output err);
     reg error;
     assign err = error;
 
-    idecoder dut(.ir, .reg_sel, .opcode, .ALU_op, .shift_op, .sximm5, .sximm8, .r_addr, .w_addr);
-    initial
-    begin
+    idecoder dut (
+        .ir,
+        .reg_sel,
+        .opcode,
+        .ALU_op,
+        .shift_op,
+        .sximm5,
+        .sximm8,
+        .r_addr,
+        .w_addr
+    );
+    initial begin
         numfail = 1'b0;
         numpass = 1'b0;
-        error = 1'b0;
-        ir = 16'b0001001110010111;
+        error   = 1'b0;
+        ir      = 16'b0001001110010111;
         reg_sel = 2'b00;
         #5;
         assert(opcode === 3'b000 && 
@@ -31,14 +42,13 @@ module tb_idecoder(output err);
             $display("[PASS]");
             numpass = numpass + 1;
         end
-        else 
-        begin
-            $error ("[FAIL]");
+        else begin
+            $error("[FAIL]");
             numfail = numfail + 1;
-            error = 1'b1;
+            error   = 1'b1;
         end
 
-        ir = 16'b1001111001011100;
+        ir      = 16'b1001111001011100;
         reg_sel = 2'b01;
         #5;
         assert(opcode === 3'b100 && 
@@ -52,14 +62,13 @@ module tb_idecoder(output err);
             $display("[PASS]");
             numpass = numpass + 1;
         end
-        else 
-        begin
-            $error ("[FAIL]");
+        else begin
+            $error("[FAIL]");
             numfail = numfail + 1;
-            error = 1'b1;
+            error   = 1'b1;
         end
 
-        ir = 16'b0101100110001000;
+        ir      = 16'b0101100110001000;
         reg_sel = 2'b10;
         #5;
         assert(opcode === 3'b010 && 
@@ -73,15 +82,14 @@ module tb_idecoder(output err);
             $display("[PASS]");
             numpass = numpass + 1;
         end
-        else 
-        begin
-            $error ("[FAIL]");
+        else begin
+            $error("[FAIL]");
             numfail = numfail + 1;
-            error = 1'b1;
+            error   = 1'b1;
         end
 
         $display("\n");
         $display("Number of passed cases: %d", numpass);
         $display("Number of failed cases: %d", numfail);
     end
-endmodule: tb_idecoder
+endmodule : tb_idecoder

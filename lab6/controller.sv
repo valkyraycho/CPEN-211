@@ -30,13 +30,9 @@ module controller (
 
     state_t state, next_state;
 
-    always_ff @(posedge clk) begin
-        if (!rst_n) begin
-            state <= WAIT;
-        end
-        else begin
-            state <= next_state;
-        end
+    always_ff @(posedge clk, negedge rst_n) begin
+        if (!rst_n) state <= WAIT;
+        else state <= next_state;
     end
 
 
@@ -69,34 +65,22 @@ module controller (
                         next_state = WRITE_VALUE;
                     end
                     {
-                        3'b110, 2'b00  // MOV
+                        3'b110, 2'b00  // MOV, MVN
+                    }, {
+                        3'b101, 2'b11
                     } : begin
                         wb_sel     = 2'b00;
                         next_state = READ_VALUEB;
                     end
                     {
-                        3'b101, 2'b00  // ADD
+                        3'b101, 2'b00  // ADD, AND, CMP
+                    }, {
+                        3'b101, 2'b01
+                    }, {
+                        3'b101, 2'b10
                     } : begin
                         wb_sel     = 2'b00;
                         next_state = READ_VALUEA;
-                    end
-                    {
-                        3'b101, 2'b01  // CMP
-                    } : begin
-                        wb_sel     = 2'b00;
-                        next_state = READ_VALUEA;
-                    end
-                    {
-                        3'b101, 2'b10  // AND
-                    } : begin
-                        wb_sel     = 2'b00;
-                        next_state = READ_VALUEA;
-                    end
-                    {
-                        3'b101, 2'b11  // MVN
-                    } : begin
-                        wb_sel     = 2'b00;
-                        next_state = READ_VALUEB;
                     end
                 endcase
             end
@@ -115,23 +99,11 @@ module controller (
                     end
                     {
                         3'b110, 2'b00  // MOV
-                    } : begin
-                        reg_sel = 2'b01;
-                        wb_sel  = 2'b00;
-                    end
-                    {
+                    }, {
                         3'b101, 2'b00  // ADD
-                    } : begin
-                        reg_sel = 2'b01;
-                        wb_sel  = 2'b00;
-                    end
-                    {
+                    }, {
                         3'b101, 2'b10  // AND
-                    } : begin
-                        reg_sel = 2'b01;
-                        wb_sel  = 2'b00;
-                    end
-                    {
+                    }, {
                         3'b101, 2'b11  // MVN
                     } : begin
                         reg_sel = 2'b01;
@@ -143,13 +115,7 @@ module controller (
             READ_VALUEA: begin
                 next_state = READ_VALUEB;
                 en_A       = 1'b1;
-                case ({
-                    opcode, ALU_op
-                })
-                    {3'b101, 2'b00} : reg_sel = 2'b10;  // ADD
-                    {3'b101, 2'b01} : reg_sel = 2'b10;  // CMP
-                    {3'b101, 2'b10} : reg_sel = 2'b10;  // AND
-                endcase
+                reg_sel    = 2'b10;
             end
 
             READ_VALUEB: begin
@@ -172,6 +138,8 @@ module controller (
                     end
                     {
                         3'b101, 2'b00  // ADD
+                    }, {
+                        3'b101, 2'b00  // AND
                     } : begin
                         wb_sel = 2'b00;
                     end
@@ -182,11 +150,6 @@ module controller (
                         en_status  = 1'b1;
                         wb_sel     = 2'b00;
                         next_state = WAIT;
-                    end
-                    {
-                        3'b101, 2'b10  // AND
-                    } : begin
-                        wb_sel = 2'b00;
                     end
                     {
                         3'b101, 2'b11  // MVN
