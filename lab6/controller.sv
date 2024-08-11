@@ -36,6 +36,17 @@ module controller (
     end
 
 
+    localparam [4:0] MOVIMM = 5'b11010;
+    localparam [4:0] MOV = 5'b11000;
+    localparam [4:0] ADD = 5'b10100;
+    localparam [4:0] CMP = 5'b10101;
+    localparam [4:0] AND = 5'b10110;
+    localparam [4:0] MVN = 5'b10111;
+
+    logic [4:0] INSTR;
+    assign INSTR = {opcode, ALU_op};
+
+
     always_comb begin
         waiting    = 1'b0;
         reg_sel    = 2'b0;
@@ -55,30 +66,18 @@ module controller (
             end
 
             READ_INSTR: begin
-                case ({
-                    opcode, ALU_op
-                })
-                    {
-                        3'b110, 2'b10  // MOV_imm
-                    } : begin
+                case (INSTR)
+                    MOVIMM: begin
                         wb_sel     = 2'b10;
                         next_state = WRITE_VALUE;
                     end
-                    {
-                        3'b110, 2'b00  // MOV, MVN
-                    }, {
-                        3'b101, 2'b11
-                    } : begin
+
+                    MOV, MVN: begin
                         wb_sel     = 2'b00;
                         next_state = READ_VALUEB;
                     end
-                    {
-                        3'b101, 2'b00  // ADD, AND, CMP
-                    }, {
-                        3'b101, 2'b01
-                    }, {
-                        3'b101, 2'b10
-                    } : begin
+
+                    ADD, AND, CMP: begin
                         wb_sel     = 2'b00;
                         next_state = READ_VALUEA;
                     end
@@ -88,24 +87,14 @@ module controller (
             WRITE_VALUE: begin
                 next_state = WAIT;
                 w_en       = 1'b1;
-                case ({
-                    opcode, ALU_op
-                })
-                    {
-                        3'b110, 2'b10  // MOV_imm
-                    } : begin
+                case (INSTR)
+
+                    MOVIMM: begin
                         reg_sel = 2'b10;
                         wb_sel  = 2'b10;
                     end
-                    {
-                        3'b110, 2'b00  // MOV
-                    }, {
-                        3'b101, 2'b00  // ADD
-                    }, {
-                        3'b101, 2'b10  // AND
-                    }, {
-                        3'b101, 2'b11  // MVN
-                    } : begin
+
+                    MOV, ADD, AND, MVN: begin
                         reg_sel = 2'b01;
                         wb_sel  = 2'b00;
                     end
@@ -127,33 +116,25 @@ module controller (
             ENABLE_C: begin
                 next_state = WRITE_VALUE;
                 en_C       = 1'b1;
-                case ({
-                    opcode, ALU_op
-                })
-                    {
-                        3'b110, 2'b00  // MOV
-                    } : begin
+                case (INSTR)
+
+                    MOV: begin
                         wb_sel = 2'b10;
                         sel_A  = 1'b1;
                     end
-                    {
-                        3'b101, 2'b00  // ADD
-                    }, {
-                        3'b101, 2'b00  // AND
-                    } : begin
+
+                    ADD, AND: begin
                         wb_sel = 2'b00;
                     end
-                    {
-                        3'b101, 2'b01  // CMP
-                    } : begin
+
+                    CMP: begin
                         en_C       = 1'b0;
                         en_status  = 1'b1;
                         wb_sel     = 2'b00;
                         next_state = WAIT;
                     end
-                    {
-                        3'b101, 2'b11  // MVN
-                    } : begin
+
+                    MVN: begin
                         wb_sel = 2'b00;
                         sel_A  = 1'b1;
                     end
