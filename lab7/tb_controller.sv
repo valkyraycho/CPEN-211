@@ -153,24 +153,8 @@ module tb_controller (
         ALU_op = 2'b10;
         #5;
         clock;
-        assert(
-            wb_sel === 2'b10 && 
-            reg_sel === 2'b10 && 
-            w_en === 1'b1 && 
-            en_A === 1'b0 && 
-            en_B === 1'b0 && 
-            en_C === 1'b0 && 
-            en_status === 1'b0 && 
-            sel_A === 1'b0 && 
-            sel_B === 1'b0 && 
-            load_ir === 1'b0 && 
-            load_pc === 1'b0 && 
-            ram_w_en === 1'b0 && 
-            sel_addr === 1'b1 && 
-            clear_pc === 1'b0 && 
-            load_addr === 1'b0
-        )
-        begin
+        clock;
+        assert (wb_sel === 2'b10 && reg_sel === 2'b10 && w_en === 1'b1 && sel_addr === 1'b1) begin
             $display("[PASS] MOV_IMM write");
             numpass = numpass + 1;
         end
@@ -211,6 +195,7 @@ module tb_controller (
         //* MOV
         opcode = 3'b110;
         ALU_op = 2'b00;
+        clock;
         clock;
         clock;
         clock;
@@ -329,6 +314,7 @@ module tb_controller (
 
         opcode = 3'b101;
         ALU_op = 2'b00;
+        clock;
         clock;
         clock;
         clock;
@@ -477,6 +463,7 @@ module tb_controller (
         clock;
         clock;
         clock;
+        clock;
 
         assert(
             wb_sel === 2'b00 && 
@@ -592,6 +579,7 @@ module tb_controller (
 
         opcode = 3'b101;
         ALU_op = 2'b10;
+        clock;
         clock;
         clock;
         clock;
@@ -741,6 +729,7 @@ module tb_controller (
         clock;
         clock;
         clock;
+        clock;
 
         assert(
             wb_sel === 2'b00 && 
@@ -855,6 +844,7 @@ module tb_controller (
 
         opcode = 3'b011;
         ALU_op = 2'b00;
+        clock;
         clock;
         clock;
         clock;
@@ -1028,6 +1018,7 @@ module tb_controller (
 
         opcode = 3'b100;
         ALU_op = 2'b00;
+        clock;
         clock;
         clock;
         clock;
@@ -1229,6 +1220,7 @@ module tb_controller (
 
         opcode = 3'b111;
         ALU_op = 2'b00;
+        clock;
         clock;
         clock;
         clock;

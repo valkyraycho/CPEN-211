@@ -1,26 +1,26 @@
 module datapath (
-    input         clk,
-    input  [15:0] mdata,
-    input  [ 7:0] pc,
-    input  [ 1:0] wb_sel,
-    input  [ 2:0] w_addr,
-    input         w_en,
-    input  [ 2:0] r_addr,
-    input         en_A,
-    input         en_B,
-    input  [ 1:0] shift_op,
-    input         sel_A,
-    input         sel_B,
-    input  [ 1:0] ALU_op,
-    input         en_C,
-    input         en_status,
-    input  [15:0] sximm8,
-    input  [15:0] sximm5,
-    output [15:0] datapath_out,
-    output        Z_out,
-    output        N_out,
-    output        V_out,
-    output [15:0] ram_w_data
+    input               clk,
+    input        [15:0] mdata,
+    input        [ 7:0] pc,
+    input        [ 1:0] wb_sel,
+    input        [ 2:0] w_addr,
+    input               w_en,
+    input        [ 2:0] r_addr,
+    input               en_A,
+    input               en_B,
+    input        [ 1:0] shift_op,
+    input               sel_A,
+    input               sel_B,
+    input        [ 1:0] ALU_op,
+    input               en_C,
+    input               en_status,
+    input        [15:0] sximm8,
+    input        [15:0] sximm5,
+    output logic [15:0] datapath_out,
+    output logic        Z_out,
+    output logic        N_out,
+    output logic        V_out,
+    output logic [15:0] ram_w_data
 );
     reg [15:0] w_data;
     always_comb begin
@@ -69,19 +69,13 @@ module datapath (
         .V
     );
 
-    reg out_z, out_n, out_v;
-    reg [15:0] out_datapath;
-    reg [15:0] data_w_ram;
-    assign Z_out        = out_z,        N_out = out_n, V_out = out_v;
-    assign datapath_out = out_datapath;
-    assign ram_w_data   = data_w_ram;
-    always_ff @(posedge clk) if (en_C) out_datapath <= ALU_out;
-    always_ff @(posedge clk) if (en_C) data_w_ram <= ALU_out;
+    always_ff @(posedge clk) if (en_C) datapath_out <= ALU_out;
+    always_ff @(posedge clk) if (en_C) ram_w_data <= ALU_out;
     always_ff @(posedge clk) begin
         if (en_status) begin
-            out_z <= Z;
-            out_n <= N;
-            out_v <= V;
+            Z_out <= Z;
+            N_out <= N;
+            V_out <= V;
         end
     end
 endmodule : datapath

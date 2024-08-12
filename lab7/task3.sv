@@ -110,7 +110,6 @@ module cpu (
         .en_status,
         .sximm8,
         .sximm5,
-        .opcode,
         .datapath_out(out),
         .Z_out(Z),
         .N_out(N),

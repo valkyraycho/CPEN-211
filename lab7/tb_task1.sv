@@ -88,8 +88,6 @@ module tb_task1 (
         clock;
         clock;
         clock;
-        clock;
-        clock;
         assert (out === 16'd16) begin
             $display("[PASS]");
             numpass = numpass + 1;
@@ -123,6 +121,7 @@ module tb_task1 (
         clock;
         clock;
         clock;
+        clock;
         assert (out === 16'd35) begin
             $display("[PASS]");
             numpass = numpass + 1;
@@ -132,8 +131,6 @@ module tb_task1 (
             numfail = numfail + 1;
             error   = 1'b1;
         end
-        clock;
-        clock;
         clock;
         clock;
         clock;
